@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: customerservice
+          uri: lb://customerservice
+          predicates:
+          - Path=/api/customers/**
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+          - Path=/api/orders/**
+        - id: fooditemservice
+          uri: lb://fooditemservice
+          predicates:
+          - Path=/api/food-items/**
+server:
+  port: 8080
